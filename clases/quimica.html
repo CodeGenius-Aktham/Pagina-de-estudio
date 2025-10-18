@@ -298,8 +298,762 @@
             </section>
             <!-- FIN CHARADAS -->
 
-             <!-- FOOTER -->
-            <footer class="mt-16 mx-auto py-4 text-slate-500">
+           
+
+            
+        </div>
+
+          <br>
+        
+         <div class="p-6 panel-style text-center flex justify-between items-center flex-wrap gap-4">
+            <h1 class="text-3xl font-extrabold tracking-tight">
+                Segundo Tema <span class="text-primary-accent"> NOMBRE </span>
+            </h1>
+        </div>  
+        <br>
+
+
+        <div class="p-8 md:p-10 panel-style w-full min-h-full"> 
+
+            <section id="nomenclatura" class="mb-20 pt-2">
+                <h3 class="text-3xl font-bold text-center mb-2 text-primary-accent">Reglas de Nomenclatura y Prefijos</h3>
+                <p class="text-center text-slate-600 mb-10">La nomenclatura IUPAC es el lenguaje universal de la química. Aquí exploramos los bloques de construcción para nombrar correctamente los alcanos y otros hidrocarburos de cadena simple.</p>
+                
+                <div class="grid lg:grid-cols-2 gap-8 items-start">
+                    
+                    <!-- Columna 1: Prefijos Numéricos (Acordeón) -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h4 class="text-2xl font-bold mb-4 text-text-dark border-b pb-2">Prefijos por Número de Carbonos</h4>
+                        <p class="mb-4 text-sm text-slate-700">Haz clic para expandir la lista de prefijos utilizados según la longitud de la cadena de carbono (C).</p>
+                        
+                        <!-- Acordeón para 1-10 C -->
+                        <div class="accordion-item mb-2">
+                            <button class="accordion-header w-full flex justify-between items-center p-3 font-semibold text-left bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors" data-target="prefijos-1-10">
+                                Cadenas Cortas (C1 a C10)
+                                <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="prefijos-1-10" class="accordion-content hidden p-4 mt-2 bg-white rounded-lg border border-gray-200">
+                                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                    <li>1C: Met- (Metano)</li>
+                                    <li>2C: Et- (Etano)</li>
+                                    <li>3C: Prop- (Propano)</li>
+                                    <li>4C: But- (Butano)</li>
+                                    <li>5C: Pent- (Pentano)</li>
+                                    <li>6C: Hex- (Hexano)</li>
+                                    <li>7C: Hept- (Heptano)</li>
+                                    <li>8C: Oct- (Octano)</li>
+                                    <li>9C: Non- (Nonano)</li>
+                                    <li>10C: Dec- (Decano)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Acordeón para 11-20 C -->
+                        <div class="accordion-item mb-2">
+                            <button class="accordion-header w-full flex justify-between items-center p-3 font-semibold text-left bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors" data-target="prefijos-11-20">
+                                Cadenas Medianas (C11 a C20)
+                                <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="prefijos-11-20" class="accordion-content hidden p-4 mt-2 bg-white rounded-lg border border-gray-200">
+                                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                    <li>11C: Undec-</li>
+                                    <li>12C: Dodec-</li>
+                                    <li>13C: Tridec-</li>
+                                    <li>14C: Tetradec-</li>
+                                    <li>15C: Pentadec-</li>
+                                    <li>20C: Eicos-</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Acordeón para Fórmulas -->
+                        <div class="accordion-item">
+                            <button class="accordion-header w-full flex justify-between items-center p-3 font-semibold text-left bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors" data-target="formulas-alcanos">
+                                Fórmula General de Alcanos
+                                <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="formulas-alcanos" class="accordion-content hidden p-4 mt-2 bg-white rounded-lg border border-gray-200 text-center">
+                                <p class="text-base font-bold text-primary-accent">Fórmula General: CH{2n+2}</p>
+                                <p class="text-sm text-slate-700 mt-2">Donde n es el número de átomos de carbono. Por ejemplo, si n=5 (Pentano), la fórmula molecular es C5 H12 (2\times 5 + 2 = 12).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Columna 2: Fórmulas Orgánicas (Tabla Interactiva) -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h4 class="text-2xl font-bold mb-4 text-text-dark border-b pb-2">Clasificación de Fórmulas</h4>
+                        <p class="mb-4 text-sm text-slate-700">Los compuestos orgánicos pueden representarse de varias maneras. Explora las formas más comunes haciendo clic en ellas.</p>
+
+                        <div id="formula-interactive" class="space-y-3">
+                             <div class="p-3 border-2 border-transparent rounded-lg cursor-pointer bg-white shadow-md hover:border-primary-light transition-all" data-formula="Desarrollada">
+                                <p class="font-bold text-primary-accent">Fórmula Estructural Desarrollada</p>
+                                <div class="formula-detail hidden mt-2 text-sm text-slate-700">Muestra todos los átomos y todos los enlaces. Muy detallada, pero larga. <br> <code class="font-mono text-xs">H-C-C-C-H</code> (Mostrando todos los H's)</div>
+                            </div>
+                            <div class="p-3 border-2 border-transparent rounded-lg cursor-pointer bg-white shadow-md hover:border-primary-light transition-all" data-formula="Semidesarrollada">
+                                <p class="font-bold text-primary-accent">Fórmula Estructural Semidesarrollada</p>
+                                <div class="formula-detail hidden mt-2 text-sm text-slate-700">Muestra los enlaces carbono-carbono, pero agrupa los hidrógenos con su carbono. <br> <code class="font-mono text-xs">CH3-CH2-CH3</code> (Propano)</div>
+                            </div>
+                            <div class="p-3 border-2 border-transparent rounded-lg cursor-pointer bg-white shadow-md hover:border-primary-light transition-all" data-formula="Condensada">
+                                <p class="font-bold text-primary-accent">Fórmula Estructural Condensada</p>
+                                <div class="formula-detail hidden mt-2 text-sm text-slate-700">Agrupa los CH2 repetidos entre paréntesis. Ideal para cadenas largas. <br> <code class="font-mono text-xs">CH3-(CH2)4-CH3</code> (Hexano)</div>
+                            </div>
+                            <div class="p-3 border-2 border-transparent rounded-lg cursor-pointer bg-white shadow-md hover:border-primary-light transition-all" data-formula="Molecular">
+                                <p class="font-bold text-primary-accent">Fórmula Molecular (Cn Hm)</p>
+                                <div class="formula-detail hidden mt-2 text-sm text-slate-700">Solo indica el número total de cada tipo de átomo en la molécula. <br> <code class="font-mono text-xs">C6H14</code> (Hexano)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <style>
+    /* Opcional: Estilo para la rotación del icono en el acordeón */
+    .accordion-header[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+    }
+    
+    /* Opcional: Estilo para la fórmula activa en la sección de Clasificación */
+    .formula-interactive-active {
+        border-color: #3b82f6 !important; /* Un color de acento, ajusta si tu 'primary-light' es diferente */
+        background-color: #f3f9ff; /* Un fondo ligeramente diferente para destacar */
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        // **********************************************
+        // 1. Lógica para los Acordeones (Prefijos)
+        // **********************************************
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                const isExpanded = header.getAttribute('aria-expanded') === 'true' || false;
+                const icon = header.querySelector('svg');
+
+                // Si el acordeón ya está abierto, ciérralo.
+                if (isExpanded) {
+                    content.classList.add('hidden');
+                    header.setAttribute('aria-expanded', 'false');
+                    if (icon) icon.classList.remove('rotate-180');
+                } else {
+                    // Oculta todos los contenidos de acordeón y restablece los encabezados
+                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.accordion-header').forEach(h => {
+                        h.setAttribute('aria-expanded', 'false');
+                        const hIcon = h.querySelector('svg');
+                        if (hIcon) hIcon.classList.remove('rotate-180');
+                    });
+
+                    // Muestra el contenido clickeado
+                    content.classList.remove('hidden');
+                    header.setAttribute('aria-expanded', 'true');
+                    if (icon) icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+        // **********************************************
+        // 2. Lógica para la Interacción de Fórmulas
+        // **********************************************
+        const formulaItems = document.querySelectorAll('#formula-interactive > div');
+
+        formulaItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const detail = item.querySelector('.formula-detail');
+
+                // 1. Limpiar estado activo y ocultar todos los detalles
+                formulaItems.forEach(i => {
+                    i.classList.remove('formula-interactive-active');
+                    i.querySelector('.formula-detail').classList.add('hidden');
+                });
+
+                // 2. Mostrar el detalle clickeado y marcar como activo
+                if (detail.classList.contains('hidden')) {
+                    detail.classList.remove('hidden');
+                    item.classList.add('formula-interactive-active');
+                } 
+                // Nota: No se implementa toggle para obligar al usuario a ver 
+                // solo una descripción a la vez, pero se podría hacer con un else.
+            });
+        });
+    });
+</script>
+
+
+
+
+ <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ========================================================== */
+        /* === ZONA CRÍTICA DE AISLAMIENTO (Para no dañar la página) === */
+        /* ========================================================== */
+        
+        /* 1. RESET AGRESIVO: Aísla el componente del CSS externo */
+        #main-container {
+            /* all: initial; resetea la herencia de casi todas las propiedades CSS */
+            all: initial; 
+            display: block; /* Restablecer display, ya que initial lo borra */
+            font-family: 'Inter', sans-serif; /* Definir una fuente estándar aislada */
+            
+            /* Clases de Tailwind replicadas en CSS para el contenedor principal */
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        /* 2. Restablecer el box-sizing para los elementos internos del widget */
+        #main-container * {
+            box-sizing: border-box;
+            line-height: 1.25; /* leading-tight */
+        }
+
+        /* 3. Estilo para el cuadro de clasificación flotante */
+        #chainClassificationBox {
+            position: fixed; 
+            top: 1rem; 
+            right: 1rem; 
+            padding: 0.75rem; 
+            border: 2px solid #3b82f6; /* Blue border */
+            background-color: #eff6ff; /* Light blue background */
+            color: #1e40af; /* Dark blue text */
+            border-radius: 8px;
+            z-index: 50; 
+            font-size: 0.875rem; 
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none; /* Asegura el estado inicial */
+        }
+        
+        #chainClassificationResult {
+            font-weight: 700;
+            margin-top: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cuadro de Clasificación de Cadena (Visible solo con JS) -->
+    <!-- Se mantiene el estilo POSICIONAL en CSS para aislamiento -->
+    <div id="chainClassificationBox">
+        <span>Clasificación de Cadena:</span>
+        <div id="chainClassificationResult"></div>
+    </div>
+
+    <!-- Contenedor Principal con Aislamiento CSS Forzado -->
+    <div id="main-container">
+        <h1 class="text-center text-3xl font-extrabold text-gray-800 mb-2">Constructor de Esqueletos de Carbono</h1>
+        <p class="text-center text-sm text-gray-600 mb-6">Clasificación dinámica de carbonos y visualización de fórmulas CH.</p>
+
+        <!-- Controles -->
+        <div class="flex justify-center space-x-4 mb-4">
+            <button id="addCarbonBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200 font-medium">Añadir Carbono</button>
+            <button id="linkBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200 font-medium">Modo Enlace</button>
+            <button id="resetBtn" class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition duration-200 font-medium">Reiniciar</button>
+        </div>
+
+        <!-- Mensaje de Estado -->
+        <div id="statusMessage" class="h-5 text-center mb-4 text-sm font-semibold">Modo: Añadir Carbono.</div>
+
+        <!-- Canvas SVG -->
+        <svg id="canvas" width="100%" height="400" class="border border-gray-400 bg-gray-100 rounded-lg shadow-inner"></svg>
+
+        <!-- Resultados -->
+        <div class="mt-6 pt-4 border-t border-gray-300">
+            <h2 class="text-xl font-semibold text-gray-700 mb-3">Resultados de Clasificación</h2>
+            <div id="classificationResults" class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <!-- Resultados inyectados -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Variables de Estado Globales ---
+        const canvas = document.getElementById('canvas');
+        const statusMessage = document.getElementById('statusMessage');
+        const classificationResults = document.getElementById('classificationResults');
+        
+        let nextId = 1;
+        let carbons = []; // { id, x, y, bonds: [] }
+        let selectedCarbonId = null;
+        let mode = 'ADD'; // 'ADD' | 'LINK'
+        let chainClassificationTimeout = null; 
+
+        const CARBON_RADIUS = 25; 
+        const MAX_BONDS = 4;
+
+        // Colores simplificados para la funcionalidad básica (se usan en el SVG)
+        const TYPE_COLORS = {
+            Primary: '#ef4444',    // red-500
+            Secondary: '#f97316',  // orange-600
+            Tertiary: '#facc15',   // yellow-400
+            Quaternary: '#10b981', // green-500
+            Unbonded: '#3b82f6'    // blue-500
+        };
+
+        // --- Funciones de Utilidad ---
+
+        /**
+         * Determina el tipo de un carbono.
+         */
+        function classifyCarbon(bondCount) {
+            let type;
+            switch (bondCount) {
+                case 1: type = 'Primary'; break;
+                case 2: type = 'Secondary'; break;
+                case 3: type = 'Tertiary'; break;
+                case 4: type = 'Quaternary'; break;
+                default: type = 'Unbonded'; break;
+            }
+            // Retorna datos esenciales (sin clases CSS)
+            return { 
+                type: type, 
+                description: type === 'Primary' ? 'Primario (CH₃)' : 
+                              type === 'Secondary' ? 'Secundario (CH₂)' : 
+                              type === 'Tertiary' ? 'Terciario (CH)' : 
+                              type === 'Quaternary' ? 'Cuaternario (C)' : 'Sin enlaces (CH₄)',
+                color: TYPE_COLORS[type]
+            };
+        }
+
+        /**
+         * Calcula y devuelve la fórmula semidesarrollada (CHn) para mostrar en el círculo.
+         */
+        function getCarbonFormula(bondCount) {
+            const H_count = MAX_BONDS - bondCount;
+            if (H_count === 0) return 'C';
+            if (H_count === 1) return 'CH';
+            // Usamos un pequeño hack para el subíndice visual en el SVG
+            return `CH${H_count}`; 
+        }
+
+        /**
+         * Muestra un mensaje temporal en el área de estado.
+         */
+        function showStatus(message, color = 'red') {
+            statusMessage.textContent = message;
+            // Usamos la propiedad style para el color dinámico (esto es seguro)
+            statusMessage.style.color = color; 
+            clearTimeout(window.statusTimeout);
+            window.statusTimeout = setTimeout(() => {
+                const defaultColor = mode === 'LINK' ? '#f59e0b' : '#3b82f6'; // Tailwind amber-500 or blue-500
+                statusMessage.textContent = mode === 'LINK' ? 'Modo: Enlace. Haz clic en un átomo para seleccionarlo.' : 'Modo: Añadir Carbono. Haz clic en el panel para colocarlo.';
+                statusMessage.style.color = defaultColor;
+            }, 3000);
+        }
+
+        // --- LÓGICA DE CLASIFICACIÓN DE CADENA (Algoritmo de DFS para ciclos y ramificaciones) ---
+
+        function classifyChainStructure() {
+            if (carbons.length === 0) return 'Estructura Vacía';
+            if (carbons.length === 1) return 'Monocarbono (Metano)';
+            
+            const visited = new Set();
+            let numComponents = 0;
+            let isGlobalCyclic = false;
+            let isGlobalBranched = false;
+            
+            function dfs(carbonId, parentId) {
+                visited.add(carbonId);
+                const carbon = carbons.find(c => c.id === carbonId);
+                if (!carbon) return { isCycleFound: false, hasBranch: false };
+
+                let isCycleFound = false;
+                // Un carbono ramificado tiene más de 2 enlaces con otros carbonos.
+                let hasBranch = (carbon.bonds.length > 2); 
+
+                for (const neighborId of carbon.bonds) {
+                    if (neighborId === parentId) continue;
+                    
+                    if (visited.has(neighborId)) {
+                        isCycleFound = true;
+                    } else {
+                        const result = dfs(neighborId, carbonId);
+                        if (result.isCycleFound) isCycleFound = true;
+                        if (result.hasBranch) hasBranch = true;
+                    }
+                }
+                return { isCycleFound, hasBranch };
+            }
+
+            for (const carbon of carbons) {
+                if (!visited.has(carbon.id)) {
+                    numComponents++;
+                    const result = dfs(carbon.id, null);
+                    if (result.isCycleFound) isGlobalCyclic = true;
+                    if (result.hasBranch) isGlobalBranched = true;
+                }
+            }
+
+            if (numComponents > 1) {
+                return `Estructura Dispersa (${numComponents} fragmentos)`;
+            }
+
+            if (isGlobalCyclic) {
+                return 'Cadena Cerrada (Cíclica)';
+            } else {
+                // Si no es cíclica, es lineal o ramificada.
+                return isGlobalBranched ? 'Cadena Abierta Ramificada' : 'Cadena Abierta Lineal';
+            }
+        }
+        
+        function resetClassificationTimer() {
+            clearTimeout(chainClassificationTimeout);
+            const classificationEl = document.getElementById('chainClassificationBox');
+            // Usamos la propiedad style para ocultar/mostrar (es seguro)
+            classificationEl.style.display = 'none'; 
+
+            if (carbons.length > 0) {
+                // Mostrar clasificación 4 segundos después de la última acción
+                chainClassificationTimeout = setTimeout(() => {
+                    const classification = classifyChainStructure();
+                    const resultEl = document.getElementById('chainClassificationResult');
+                    
+                    if(classificationEl && resultEl) {
+                        resultEl.textContent = classification;
+                        classificationEl.style.display = 'block';
+                        
+                        // Ocultar el box después de 5 segundos
+                        setTimeout(() => {
+                            classificationEl.style.display = 'none';
+                        }, 5000); 
+                    }
+                }, 4000);
+            }
+        }
+
+        // --- Lógica del Estado y Dibujo ---
+
+        /**
+         * Dibuja toda la molécula (enlaces y átomos) en el SVG.
+         */
+        function render() {
+            canvas.innerHTML = '';
+            
+            // 1. Dibujar Enlaces (Bonds)
+            carbons.forEach(c1 => {
+                c1.bonds.forEach(c2Id => {
+                    if (c1.id < c2Id) { // Dibujar cada enlace una sola vez
+                        const c2 = carbons.find(c => c.id === c2Id);
+                        if (c2) {
+                            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                            line.setAttribute('x1', c1.x);
+                            line.setAttribute('y1', c1.y);
+                            line.setAttribute('x2', c2.x);
+                            line.setAttribute('y2', c2.y);
+                            line.setAttribute('stroke', '#444');
+                            line.setAttribute('stroke-width', 4);
+                            line.setAttribute('stroke-linecap', 'round');
+                            canvas.appendChild(line);
+                        }
+                    }
+                });
+            });
+
+            // 2. Dibujar Carbonos (Atoms)
+            carbons.forEach(carbon => {
+                const bondCount = carbon.bonds.length;
+                const { color } = classifyCarbon(bondCount);
+                
+                // Círculo del átomo
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', carbon.x);
+                circle.setAttribute('cy', carbon.y);
+                circle.setAttribute('r', CARBON_RADIUS);
+                circle.setAttribute('fill', color);
+                circle.setAttribute('stroke', '#000');
+                // Resaltar si está seleccionado en modo enlace
+                circle.setAttribute('stroke-width', carbon.id === selectedCarbonId ? 4 : 2); 
+                circle.setAttribute('stroke-dasharray', carbon.id === selectedCarbonId ? '5,5' : '0'); 
+                circle.dataset.id = carbon.id;
+                circle.style.cursor = 'pointer';
+
+                // Texto de la Fórmula Dinámica
+                const formula = getCarbonFormula(bondCount);
+                
+                const mainText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                mainText.setAttribute('y', carbon.y + 6);
+                mainText.style.fontSize = '16px';
+                mainText.style.fontWeight = 'bold';
+                mainText.setAttribute('text-anchor', 'middle');
+                mainText.setAttribute('fill', '#fff');
+
+                // Lógica para posicionar 'C', 'CH', o 'CHn' (ajustes visuales para el subíndice)
+                if (formula === 'C' || formula === 'CH') {
+                    mainText.textContent = formula;
+                    mainText.setAttribute('x', carbon.x);
+                } else {
+                    // C + Hn
+                    mainText.textContent = 'CH';
+                    
+                    // Subíndice
+                    const subscriptText = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    subscriptText.setAttribute('dx', 1); // Desplazar un poco a la derecha
+                    subscriptText.setAttribute('dy', 5); // Desplazar hacia abajo para simular subíndice
+                    subscriptText.setAttribute('font-size', '12px');
+                    subscriptText.textContent = formula.substring(2);
+                    mainText.appendChild(subscriptText);
+
+                    // Ajuste de centrado
+                    mainText.setAttribute('x', carbon.x - 7); 
+                }
+                
+                // Agregar eventos
+                circle.addEventListener('click', (e) => handleCarbonClick(e, carbon.id));
+                mainText.addEventListener('click', (e) => handleCarbonClick(e, carbon.id));
+
+                canvas.appendChild(circle);
+                canvas.appendChild(mainText);
+            });
+            
+            updateClassificationPanel();
+        }
+
+        /**
+         * Actualiza el panel de clasificación basado en la estructura actual.
+         */
+        function updateClassificationPanel() {
+            const counts = { Primary: 0, Secondary: 0, Tertiary: 0, Quaternary: 0 };
+            
+            carbons.forEach(carbon => {
+                const classification = classifyCarbon(carbon.bonds.length).type;
+                if (counts.hasOwnProperty(classification)) {
+                    counts[classification]++;
+                }
+            });
+
+            const classificationHtml = Object.keys(counts).map(type => {
+                const bondCount = type === 'Primary' ? 1 : type === 'Secondary' ? 2 : type === 'Tertiary' ? 3 : type === 'Quaternary' ? 4 : 0;
+                const { description, color } = classifyCarbon(bondCount);
+                const formulaText = getCarbonFormula(bondCount);
+                
+                // Usamos clases de utilidad para los resultados, aunque el color del borde viene del JS
+                return `
+                    <div class="p-3 border-2 rounded-lg shadow-sm" style="border-color: ${color};">
+                        <p class="text-3xl font-extrabold text-gray-800">${counts[type]}</p>
+                        <p class="text-xs font-semibold text-gray-700 mt-1">${description.split('(')[0].trim()}</p>
+                        <p class="text-xs text-gray-500">Fórmula: <b class="font-bold">${formulaText}</b></p>
+                    </div>
+                `;
+            }).join('');
+
+            classificationResults.innerHTML = classificationHtml;
+        }
+
+        /**
+         * Cambia el modo a Añadir Carbono y actualiza la UI.
+         */
+        function setAddMode() {
+            mode = 'ADD';
+            document.getElementById('linkBtn').textContent = 'Modo Enlace';
+            showStatus('Modo: Añadir Carbono. Haz clic en el panel para colocarlo.', '#3b82f6'); // blue-500
+        }
+
+        /**
+         * Cambia el modo a Enlace y actualiza la UI.
+         */
+        function setLinkMode() {
+            mode = 'LINK';
+            document.getElementById('linkBtn').textContent = 'Dejar de Enlazar';
+            showStatus('Modo: Enlace. Selecciona el primer C, luego el segundo.', '#f59e0b'); // amber-500
+        }
+
+
+        // --- Manejadores de Eventos ---
+
+        function handleCarbonClick(e, carbonId) {
+            e.stopPropagation(); 
+            
+            if (mode === 'LINK' && selectedCarbonId !== null) {
+                // Intento de enlazar con el segundo carbono
+                if (selectedCarbonId === carbonId) {
+                    showStatus('¡No puedes enlazar un átomo consigo mismo!');
+                    return;
+                }
+                
+                const c1 = carbons.find(c => c.id === selectedCarbonId);
+                const c2 = carbons.find(c => c.id === carbonId);
+
+                let connectionMade = false;
+                if (c1.bonds.includes(carbonId)) {
+                    // Desconectar (si ya están enlazados)
+                    c1.bonds = c1.bonds.filter(id => id !== carbonId);
+                    c2.bonds = c2.bonds.filter(id => id !== selectedCarbonId);
+                    showStatus('Enlace eliminado. Modo Enlace desactivado.', '#6b7280'); // gray-500
+                    connectionMade = true;
+
+                } else if (c1.bonds.length < MAX_BONDS && c2.bonds.length < MAX_BONDS) {
+                    // Crear nuevo enlace
+                    c1.bonds.push(carbonId);
+                    c2.bonds.push(selectedCarbonId);
+                    showStatus('¡Enlace creado! Modo Enlace desactivado.', '#10b981'); // green-500
+                    connectionMade = true;
+
+                } else {
+                    showStatus(`Error: Uno o ambos átomos ya tienen el máximo de ${MAX_BONDS} enlaces.`);
+                }
+                
+                if(connectionMade) {
+                    setAddMode(); 
+                    selectedCarbonId = null;
+                    resetClassificationTimer();
+                }
+
+            } else if (mode === 'LINK') {
+                // Primer clic en modo LINK
+                selectedCarbonId = carbonId;
+                showStatus(`Carbono ${carbonId} seleccionado. Haz clic en el segundo carbono para enlazar o desconectar.`, '#f59e0b'); // amber-500
+            } else {
+                // Clic en modo ADD (simplemente selecciona para resaltar)
+                selectedCarbonId = carbonId;
+                showStatus(`Carbono ${carbonId} seleccionado. Haz clic en el botón "Modo Enlace" para conectar.`, '#3b82f6'); // blue-500
+            }
+
+            render();
+        }
+
+        document.getElementById('addCarbonBtn').addEventListener('click', () => {
+            setAddMode();
+            selectedCarbonId = null; 
+            resetClassificationTimer();
+            render();
+        });
+
+        document.getElementById('linkBtn').addEventListener('click', () => {
+            if (carbons.length < 1) {
+                showStatus('Necesitas al menos un carbono para usar el modo enlace.', '#f87171'); // red-400
+                setAddMode();
+                return;
+            }
+            
+            if (mode === 'LINK') {
+                setAddMode();
+                selectedCarbonId = null;
+            } else {
+                setLinkMode();
+            }
+            resetClassificationTimer();
+            render();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            carbons = [];
+            nextId = 1;
+            selectedCarbonId = null;
+            setAddMode();
+            clearTimeout(chainClassificationTimeout);
+            document.getElementById('chainClassificationBox').style.display = 'none';
+            
+            showStatus('Estructura reiniciada.', '#dc2626'); // red-600
+            render();
+        });
+
+        canvas.addEventListener('click', (e) => {
+            if (mode === 'ADD') {
+                const rect = canvas.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                let y = e.clientY - rect.top;
+
+                // Limitar posición dentro del canvas
+                x = Math.max(CARBON_RADIUS, Math.min(x, rect.width - CARBON_RADIUS));
+                y = Math.max(CARBON_RADIUS, Math.min(y, rect.height - CARBON_RADIUS));
+
+                // Evitar superposición excesiva (distancia mínima de 2.5 radios)
+                const MIN_DIST_SQ = (CARBON_RADIUS * 2.5) ** 2;
+                const isOverlapping = carbons.some(c => {
+                    const dx = c.x - x;
+                    const dy = c.y - y;
+                    return (dx * dx + dy * dy) < MIN_DIST_SQ;
+                });
+
+                if (isOverlapping) {
+                    showStatus('Por favor, coloca el átomo en un espacio más abierto.');
+                    return;
+                }
+
+                carbons.push({
+                    id: nextId++,
+                    x: x,
+                    y: y,
+                    bonds: []
+                });
+                
+                showStatus(`Carbono ${nextId - 1} añadido.`, '#3b82f6');
+                resetClassificationTimer();
+                render();
+            } else if (mode === 'LINK') {
+                showStatus('Estás en modo Enlace. Haz clic en un átomo para seleccionarlo.', '#f59e0b');
+            }
+        });
+
+        window.onload = () => {
+            setAddMode();
+            render(); 
+        };
+        
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+            
+
+
+
+      <footer class="mt-16 mx-auto py-4 text-slate-500 panel-style">
                 <div class="max-w-5xl mx-auto text-center text-sm px-4 flex flex-col items-center">
                     <!-- Mensaje central -->
                     <p class="mb-2 text-slate-600 font-medium">
@@ -313,8 +1067,12 @@
                     </div>
                 </div>
             </footer>
-        </div>
+
+
+        
     </main>
+     <!-- FOOTER -->
+      
     
 
     <script>
