@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mantenimiento | R.A.L.S.M. Centro de Estudio</title>
+    <title>GHC | La Tierra como Sistema Vivo</title>
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,11 +11,23 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-accent': '#059669', /* Verde Esmeralda Profundo (Color principal) */
-                        'primary-light': '#34d399', /* Verde más claro para hover y sombras */
-                        'bg-light': '#fefefe',
-                        'text-dark': '#1e293b',
-                        'yellow-alert': '#f59e0b', /* Amarillo suave para la alerta */
+                        // Paleta Morada/Púrpura
+                        'primary-accent': '#7c3aed', /* Púrpura Vibrante (Color principal GHC) */
+                        'primary-light': '#a78bfa', /* Lavanda Clara para hover y sombras */
+                        
+                        'bg-light': '#fefefe', 
+                        'text-dark': '#1e293b', 
+                        
+                        // Colores de Biología (para evitar confusiones)
+                        'bio-accent': '#059669', 
+                        'bio-light': '#34d399', 
+                        
+                        // Colores específicos para el contenido de GHC (Púrpura)
+                        'ghc-bg': '#f5f3ff', /* Púrpura muy claro (Purple 50) */
+                        'ghc-text': '#5b21b6', /* Púrpura oscuro para texto importante */
+                        'ghc-border': '#c4b5fd', /* Púrpura medio para bordes */
+                        'ghc-map-bg': '#ede9fe', /* Púrpura muy claro para nodos */
+                        'ghc-map-connect': '#8b5cf6', /* Púrpura medio para líneas */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -24,107 +36,643 @@
             }
         }
     </script>
-    <!-- Usamos la fuente Inter, ideal para un look moderno y legible -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.fonts.gstatic.com/s/inter/v13/UuauKZEhKxNYXgqS-e2TBA.woff2" rel="stylesheet">
     <style>
         /* Estilos de Fondo y Base */
         body {
-            background-color: #f7f9fc; /* Off-white muy sutil */
+            background-color: #f7f9fc; 
             color: #1e293b; 
             padding-bottom: 40px; 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         
         /* Estilo base para todos los paneles (Apple look) */
         .panel-style {
-            /* Esquinas grandes y suaves */
             border-radius: 2rem; 
             background-color: white;
-            /* Sombra sutil pero prominente */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.05); 
-            border: 1px solid #f3f4f6; /* Borde muy claro */
+            border: 1px solid #f3f4f6;
             transition: all 0.3s ease;
-        }
-        
-        /* Estilo para la navegación superior y botones de acción */
-        .nav-button {
-            transition: all 0.3s ease;
-            border-radius: 9999px;
-            padding: 10px 25px;
-            font-weight: 600;
-        }
-        .nav-button:hover {
-            background-color: #059669;
-            color: white;
-            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
         }
 
-        /* Footer Estático (Mismo estilo que index.html) */
-        .static-footer-panel {
-            width: 95%; 
-            max-width: 800px;
-            z-index: 10; 
-            padding: 1rem 1.5rem;
-            border-radius: 1.5rem; 
-            background-color: white; 
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-top: auto; /* Empuja el footer hacia abajo */
+        /* Título de sección dentro del contenido */
+        .content-heading {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            color: #7c3aed; /* primary-accent (Morado) */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #ddd6fe; /* Borde púrpura muy claro */
         }
+        
+        /* Estilo de la tarjeta de definición de Sistema */
+        .system-box {
+            background-color: #f5f3ff; /* ghc-bg */
+            border-left: 5px solid #7c3aed; /* primary-accent */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Estilo para las tarjetas de las Interacciones */
+        .interaction-card {
+            background-color: #ffffff;
+            border: 1px solid #ede9fe; /* border-purple-200 */
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .interaction-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(124, 58, 237, 0.1); /* Sombra morada */
+        }
+
+        /* Estilo para botón de carga */
+        .loading-ring {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            width: 1rem;
+            height: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estilos específicos para el Mapa Conceptual */
+        .map-node {
+            background-color: #ede9fe; /* ghc-map-bg */
+            border: 2px solid #a78bfa; /* primary-light */
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            font-weight: 700;
+            color: #5b21b6; /* ghc-text */
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(124, 58, 237, 0.1); /* Sombra morada */
+        }
+        .map-connector {
+            height: 2px;
+            background-color: #8b5cf6; /* ghc-map-connect */
+            margin: 0.5rem auto;
+            width: 80%;
+        }
+
     </style>
 </head>
-<body class="pt-12 px-4 font-sans text-text-dark">
+<body class="min-h-screen flex flex-col items-center pt-8 px-4 font-sans text-text-dark">
 
-    <!-- PANEL DE NAVEGACIÓN (HEADER) -->
-    <header class="mb-12 z-10 w-full max-w-4xl p-6 panel-style text-center flex justify-between items-center flex-wrap gap-4">
-        <h1 class="text-3xl font-extrabold tracking-tight">
-            Centro de Estudio <span class="text-primary-accent">R.A.L.S.M.</span>
-        </h1>
-        <a href="../clases.html" class="nav-button border-2 border-primary-accent text-primary-accent">
-            ← Volver a Inicio
-        </a>
+    <!-- PANEL DEL TÍTULO PRINCIPAL (HEADER CON BOTÓN) -->
+    <header class="w-full max-w-4xl mx-auto mb-10 z-10">
+        <div class="p-6 panel-style text-center flex justify-between items-center flex-wrap gap-4">
+            
+            <!-- Título Principal -->
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-dark">
+                Clase de <span class="text-primary-accent">GHC</span>
+            </h1>
+
+            <!-- Botón Volver a Clases -->
+            <a href="clases.html" class="nav-button border-2 border-primary-accent text-primary-accent px-4 py-2 font-semibold rounded-full hover:bg-primary-accent hover:text-white transition duration-200 text-sm sm:text-base">
+                ← Volver a Clases 📚
+            </a>
+        </div>
+        <p class="text-lg text-slate-500 font-light italic mt-4 text-center">
+            Tema 2: La Tierra un Sistema Complejo Vivo
+        </p>
     </header>
 
-    <!-- PANEL PRINCIPAL DE MANTENIMIENTO -->
-    <main class="w-full max-w-3xl flex-grow flex items-center justify-center">
-        
-        <div class="p-10 panel-style z-10 text-center w-full">
-            
-            <!-- Icono de Alerta -->
-            <div class="text-8xl mb-6 text-yellow-alert">🛠️</div>
+    <!-- CONTENEDOR PRINCIPAL DEL CONTENIDO -->
+    <main class="w-full max-w-4xl text-slate-700">
 
-            <h2 class="text-4xl font-extrabold mb-4 text-text-dark">
-                ¡Estamos Mejorando para Ti!
+        <!-- INTRODUCCIÓN Y DEFINICIÓN DEL SISTEMA -->
+        <section class="p-6 sm:p-10 mb-10 panel-style">
+            <h2 class="content-heading flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+                La Tierra: Un Sistema Integral y Complejo
             </h2>
             
-            <p class="text-xl text-slate-700 leading-relaxed mb-8 max-w-xl mx-auto">
-                Actualmente estamos en **mantenimiento** y trabajando arduamente para agregar todo el material de estudio nuevo que necesitas.
+            <p class="mb-6 text-lg text-slate-800">
+                La Tierra no es solo una esfera de roca, sino un **sistema complejo vivo**, una agrupación dinámica de elementos interrelacionados que funcionan en armonía y de forma articulada.
             </p>
 
-            <p class="text-lg text-slate-500 font-medium">
-                Vuelve pronto. ¡La actualización estará lista en breve!
+            <div class="system-box">
+                <strong class="block text-primary-accent text-xl mb-2 font-extrabold">Definición de Sistema</strong>
+                <p>
+                    Es un conjunto de elementos o partes **interrelacionadas** que se encuentran en un **equilibrio dinámico** y que es capaz de **evolucionar** en el transcurso del tiempo. Funciona como un todo.
+                </p>
+            </div>
+            
+            <p class="mt-6 text-base italic text-slate-600">
+                Este concepto se aplica en diversos campos y es fundamental para entender nuestro planeta.
+            </p>
+        </section>
+
+        <!-- MAPA CONCEPTUAL -->
+        <section class="p-6 sm:p-10 mb-10 panel-style bg-ghc-bg">
+            <h2 class="content-heading flex items-center gap-2 text-primary-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M16 8h.01"/><path d="M12 21.325c-5.26-1.551-7.89-2.327-8.941-4.225-.494-.908-.344-1.93.39-3.235C4.265 12.59 5.372 10.992 6.55 9.875 7.625 8.85 8.75 8.1 10 7.475"/><path d="M13 3c2.72.63 4.965 2.5 6.46 4.912C20.665 9.725 21 11.237 21 12.988V13c0 2.21-1.79 4-4 4h-2.5c-.777 0-1.5-.322-2-.888L10 14"/><path d="M17 17.5V10"/></svg>
+                Mapa Conceptual: La Tierra como Sistema
+            </h2>
+            
+            <div class="space-y-4">
+                
+                <!-- NODO PRINCIPAL -->
+                <div class="map-node bg-primary-accent text-white shadow-xl max-w-lg mx-auto p-4 text-2xl">
+                    LA TIERRA
+                </div>
+                
+                <div class="text-center text-primary-accent font-semibold text-lg">
+                    ES UN
+                </div>
+                
+                <!-- NODO SECUNDARIO (Sistema) -->
+                <div class="map-node max-w-md mx-auto">
+                    SISTEMA COMPLEJO VIVO
+                </div>
+                
+                <div class="text-center text-primary-accent font-semibold text-lg">
+                    SE CARACTERIZA POR
+                </div>
+
+                <!-- CARACTERÍSTICAS (Grid) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-2">
+                    <div class="map-node">ÁMBITO (Espacio)</div>
+                    <div class="map-node">ESTRUCTURA (Orden)</div>
+                    <div class="map-node">DINÁMICA (Relación)</div>
+                    <div class="map-node">EQUILIBRIO (Estabilidad)</div>
+                </div>
+
+                <div class="text-center text-primary-accent font-semibold text-lg pt-4">
+                    Y SE COMPONE DE CUATRO
+                </div>
+                
+                <!-- SUBSISTEMAS (Grid) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-2">
+                    <div class="map-node bg-purple-100 border-purple-400 text-purple-800">LITÓSFERA 🏔️</div>
+                    <div class="map-node bg-purple-100 border-purple-400 text-purple-800">HIDRÓSFERA 💧</div>
+                    <div class="map-node bg-purple-100 border-purple-400 text-purple-800">ATMÓSFERA ☁️</div>
+                    <div class="map-node bg-purple-100 border-purple-400 text-purple-800">BIÓSFERA 🌱</div>
+                </div>
+            </div>
+            
+            <p class="text-center mt-6 text-slate-600 italic">
+                Estos subsistemas están en **constante interacción** (Dinámica), manteniendo la estabilidad (Equilibrio).
+            </p>
+        </section>
+
+        <!-- CARACTERÍSTICAS DEL SISTEMA TIERRA -->
+        <section class="p-6 sm:p-10 mb-10 panel-style">
+            <h2 class="content-heading flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/></svg>
+                Las 4 Características Fundamentales
+            </h2>
+            
+            <div class="space-y-6 text-base">
+                
+                <div class="p-4 bg-ghc-bg rounded-xl border border-ghc-border shadow-sm flex items-start gap-4">
+                    <span class="text-3xl text-primary-accent font-extrabold">1.</span>
+                    <div>
+                        <strong class="block text-primary-accent text-lg mb-1">Ámbito (Espacio)</strong>
+                        <p class="text-slate-700">Cada sistema se localiza y se circunscribe a un **cierto espacio**. Para la Tierra, su ámbito es el **Sistema Solar** y su entorno cósmico inmediato.</p>
+                    </div>
+                </div>
+                
+                <div class="p-4 bg-ghc-bg rounded-xl border border-ghc-border shadow-sm flex items-start gap-4">
+                     <span class="text-3xl text-primary-accent font-extrabold">2.</span>
+                    <div>
+                        <strong class="block text-primary-accent text-lg mb-1">Estructura (Orden)</strong>
+                        <p class="text-slate-700">Debe existir un **orden** y una **organización** entre los componentes. Esto se refiere a cómo la Tierra está distribuida en capas o esferas (Atmósfera, Hidrósfera, etc.).</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-ghc-bg rounded-xl border border-ghc-border shadow-sm flex items-start gap-4">
+                    <span class="text-3xl text-primary-accent font-extrabold">3.</span>
+                    <div>
+                        <strong class="block text-primary-accent text-lg mb-1">Dinámica (Relación Funcional)</strong>
+                        <p class="text-slate-700">Entre los componentes se establece una **relación funcional**, provocando **intercambios** y transformaciones. Esto es la base de los ciclos naturales (agua, carbono, etc.).</p>
+                    </div>
+                </div>
+                
+                <div class="p-4 bg-ghc-bg rounded-xl border border-ghc-border shadow-sm flex items-start gap-4">
+                    <span class="text-3xl text-primary-accent font-extrabold">4.</span>
+                    <div>
+                        <strong class="block text-primary-accent text-lg mb-1">Equilibrio (Estabilidad)</strong>
+                        <p class="text-slate-700">Es la tendencia del sistema a mantener una **cierta estabilidad** entre sus componentes a pesar de los constantes cambios. Este es el motor de la vida en la Tierra.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SUBSISTEMAS INTERACTIVOS (ESFERAS) -->
+        <section class="p-6 sm:p-10 mb-10 panel-style">
+            <h2 class="content-heading flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+                Los Cuatro Subsistemas y la Interacción
+            </h2>
+
+            <p class="mb-6 text-lg text-slate-800">
+                El sistema Tierra se divide en cuatro grandes subsistemas que interactúan constantemente, dándole orden y coherencia:
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-6 text-base">
+                
+                <!-- Cambiado de blue-50 a purple-50 y border/text a purple-500/purple-800 -->
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500 shadow-md flex items-center gap-3">
+                    <span class="text-3xl">☁️</span>
+                    <div>
+                        <strong class="text-primary-accent block text-xl mb-1">Atmósfera</strong>
+                        <p>Capa gaseosa que rodea la Tierra. Controla el clima y protege contra la radiación solar.</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500 shadow-md flex items-center gap-3">
+                    <span class="text-3xl">🌊</span>
+                    <div>
+                        <strong class="text-primary-accent block text-xl mb-1">Hidrósfera</strong>
+                        <p>Conjunto de todas las masas de agua (océanos, ríos, glaciares, vapor). Es vital para la vida.</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500 shadow-md flex items-center gap-3">
+                    <span class="text-3xl">🪨</span>
+                    <div>
+                        <strong class="text-primary-accent block text-xl mb-1">Litósfera</strong>
+                        <p>La parte sólida y rocosa de la Tierra (corteza y parte superior del manto). Donde se asienta la vida.</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500 shadow-md flex items-center gap-3">
+                    <span class="text-3xl">🌎</span>
+                    <div>
+                        <strong class="text-primary-accent block text-xl mb-1">Biósfera</strong>
+                        <p>Incluye a todos los seres vivos y sus hábitats. Es la interacción de la vida con las otras tres esferas.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+
+        <!-- INTERACCIONES DINÁMICAS DE LA TIERRA -->
+        <section class="p-6 sm:p-10 mb-10 panel-style">
+            <h2 class="content-heading flex items-center gap-2">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M17.5 11c-.54 2.81-3.32 5-6.5 5-1.95 0-3.69-.74-4.83-1.88a1 1 0 0 1 1.66-1.16A4.5 4.5 0 0 0 11 14.5c2.32 0 4.14-1.37 4.5-3.5h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h7.5A.5.5 0 0 1 20 7v7.5a.5.5 0 0 1-.5.5H19"/></svg>
+                Fenómenos de Interacción Global
+            </h2>
+            
+            <p class="mb-6 text-lg text-slate-800">
+                La dinámica del planeta es constante. Aquí algunos ejemplos de fenómenos clave que surgen de la interacción de la Tierra con su ámbito:
             </p>
 
-        </div>
+            <div class="space-y-6">
+                
+                <!-- FENÓMENO 1: VIENTO SOLAR -->
+                <div class="interaction-card">
+                    <strong class="text-ghc-text block text-xl mb-2 font-bold flex items-center gap-2">
+                        <span class="text-2xl">☀️</span> 1. Viento Solar
+                    </strong>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                        <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Fenómeno</span>
+                            Viento Solar / Tormentas
+                        </div>
+                         <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Origen</span>
+                            Flujo de iones de hidrógeno desde la corona solar.
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Interacción</span>
+                            Afecta las condiciones climáticas de la Tierra y nuestra Atmósfera.
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- FENÓMENO 2: MAREAS -->
+                <div class="interaction-card">
+                    <strong class="text-ghc-text block text-xl mb-2 font-bold flex items-center gap-2">
+                        <span class="text-2xl">🌙</span> 2. Mareas
+                    </strong>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                        <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Fenómeno</span>
+                            Ascenso y descenso del nivel del mar.
+                        </div>
+                         <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Origen</span>
+                            Causadas por la atracción gravitatoria de la Luna y el Sol.
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Interacción</span>
+                            Fuerza de gravedad (Sistema Solar) sobre la Hidrósfera.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FENÓMENO 3: ECLIPSES -->
+                <div class="interaction-card">
+                    <strong class="text-ghc-text block text-xl mb-2 font-bold flex items-center gap-2">
+                        <span class="text-2xl">⚫</span> 3. Eclipses
+                    </strong>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                        <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Fenómeno</span>
+                            Ocultamiento total o parcial del Sol o la Luna.
+                        </div>
+                         <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Origen</span>
+                            Se producen cuando los movimientos de traslación de la Tierra y la Luna se alinean.
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-xs text-slate-500 block font-medium uppercase">Interacción</span>
+                            Movimiento y posición de los cuerpos celestes en el ámbito del Sistema Solar.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- INTERROGATORIO IA (PÚRPURA VIBRANTE) -->
+        <section class="p-6 sm:p-10 mb-10 panel-style bg-purple-50 border-4 border-primary-accent">
+            <h2 class="text-2xl font-extrabold text-primary-accent mb-4 border-b-4 border-purple-300 pb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M18.6 14.4c0 1.5-.7 2.5-1.5 3.5"/><path d="M12 22s-4-3.5-4-8a4 4 0 0 1 8 0c0 4.5-4 8-4 8Z"/><path d="M8 11.8c0-1 .7-2 1.5-3"/><path d="M15 8.8c.8 1 1.5 2 1.5 3"/><path d="M9.5 5.5a3 3 0 0 1 5 0"/></svg>
+                Tutor GHC: Desafío de Sistemas
+            </h2>
+            
+            <p class="text-lg text-slate-800 mb-8">
+                El **Tutor Geográfico** te hará 3 preguntas clave sobre la Tierra como sistema. ¡Prepara tu defensa!
+            </p>
+
+            <div id="quiz-container" class="space-y-8">
+                <!-- La pregunta actual se inyectará aquí por JavaScript -->
+                <div class="text-center text-slate-500">Cargando preguntas...</div>
+            </div>
+            
+            <p class="text-center mt-8 text-slate-800 font-semibold italic p-3 bg-white rounded-lg shadow-inner border border-purple-100">
+                ¡Tu comprensión de la Tierra será evaluada!
+            </p>
+        </section>
+        
     </main>
     
-    <!-- FOOTER ESTÁTICO COMO PANEL -->
-    <footer class="static-footer-panel mt-16 mx-auto py-4 text-slate-500">
-        <div class="max-w-5xl mx-auto text-center text-sm px-4 flex flex-col items-center">
-            <!-- Mensaje central -->
+    <!-- FOOTER ESTILIZADO COMO PANEL -->
+    <footer class="w-full max-w-4xl mx-auto py-4 panel-style mt-8 bg-white border border-slate-100">
+        <div class="text-slate-500 text-center text-sm px-4 flex flex-col items-center">
+            <!-- Mensaje central, personalizado para Abel Ghanam -->
             <p class="mb-2 text-slate-600 font-medium">
-                Centro de Estudio <span class="text-primary-accent font-bold">R.A.L.S.M.</span> — Creada por <span class="font-bold">Abel Ghanam de 5to Amabilidad</span> para facilitar el aprendizaje.
+                Centro de Estudio <span class="text-primary-accent font-bold">R.A.L.S.M.</span> — Creada por <span class="font-bold">Abel Ghanam de 5to Amabilidad</span>.
             </p>
             <!-- Enlaces separados con línea divisoria sutil -->
             <div class="space-x-4 mt-1 pt-1 border-t border-slate-100 w-full max-w-sm">
-                <a href="../politica.html" class="hover:text-primary-accent transition duration-200 font-medium">Política de Privacidad</a>
+                <a href="politica.html" class="hover:text-primary-accent transition duration-200 font-medium">Política de Privacidad</a>
                 <span class="text-slate-300">|</span>
-                <a href="../contacto.html" class="hover:text-primary-accent transition duration-200 font-medium">Contacto Directo</a>
+                <a href="contacto.html" class="hover:text-primary-accent transition duration-200 font-medium">Contacto Directo</a>
             </div>
         </div>
     </footer>
 
+    <!-- Firebase Imports and API/Quiz Logic -->
+    <script type="module">
+        // Importaciones de Firebase (necesarias para la ejecución en el entorno)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the canvas environment
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        let shuffledQuestions;
+        let currentQuestionIndex = 0;
+        const totalQuestions = 3; 
+
+        // --- FIREBASE INITIALIZATION ---
+        const initFirebase = async () => {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Error al inicializar Firebase o iniciar sesión:", error);
+            }
+        };
+
+        // --- QUIZ DATA, SHUFFLING, AND RENDERING ---
+
+        const questions = [
+            { id: 1, text: "Define el concepto de <strong>Sistema</strong> y qué significa que esté en <strong>equilibrio dinámico</strong>.", concept: "Sistema: conjunto de partes interrelacionadas en equilibrio dinámico capaz de evolucionar. Equilibrio dinámico: tendencia a la estabilidad a pesar de los cambios constantes." },
+            { id: 2, text: "¿Cuál es la diferencia entre la característica de <strong>Estructura</strong> y la de <strong>Dinámica</strong> en el Sistema Tierra?", concept: "Estructura: el orden físico de los componentes (las esferas). Dinámica: la relación funcional e intercambios entre esos componentes (los ciclos)." },
+            { id: 3, text: "Menciona un ejemplo de interacción de la Tierra con su ámbito y explica su <strong>origen</strong>.", concept: "Ejemplo: Mareas. Origen: atracción gravitatoria de la Luna y el Sol. (Otros válidos: Viento Solar, Eclipses)." }
+        ];
+
+        const shuffleArray = (array) => {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        };
+
+        const renderQuiz = () => {
+            const container = document.getElementById('quiz-container');
+
+            if (currentQuestionIndex >= totalQuestions) {
+                // Quiz completed
+                container.innerHTML = `
+                    <div class="text-center p-8 bg-purple-50 border-2 border-primary-accent rounded-xl shadow-inner">
+                        <strong class="text-2xl font-bold text-primary-accent block mb-2">¡Interrogatorio Completo!</strong>
+                        <p class="text-lg text-slate-700">Has defendido tu conocimiento sobre la Tierra como un sistema. Revisa la retroalimentación del Tutor.</p>
+                        <strong class="block mt-4 text-primary-accent">¡Excelente trabajo!</strong>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = shuffledQuestions[currentQuestionIndex];
+            const progress = `${currentQuestionIndex + 1} de ${totalQuestions}`;
+
+            container.innerHTML = `
+                <div id="q-box-${q.id}" class="p-4 rounded-xl shadow-lg bg-white border border-purple-200">
+                    <div class="flex justify-between items-center mb-3">
+                        <strong class="block font-bold text-primary-accent text-xl">${q.text}</strong>
+                        <span class="text-primary-accent font-semibold text-sm bg-purple-50 px-3 py-1 rounded-full shadow-md">${progress}</span>
+                    </div>
+                    
+                    <textarea 
+                        id="answer-${q.id}" 
+                        rows="4" 
+                        class="w-full p-3 border border-purple-300 rounded-lg focus:ring-2 focus:ring-primary-accent resize-none text-base transition duration-150" 
+                        placeholder="Escribe aquí tu defensa (mínimo 5 palabras)..."
+                    ></textarea>
+                    
+                    <div class="flex justify-end mt-4">
+                        <button 
+                            id="button-${q.id}" 
+                            onclick="window.checkAnswer(${q.id}, '${q.concept.replace(/'/g, "\\'")}')" 
+                            class="inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-primary-accent hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-accent transition duration-150 ease-in-out w-full sm:w-auto shadow-md"
+                        >
+                            Verificar Respuesta
+                        </button>
+                    </div>
+
+                    <div id="feedback-${q.id}" class="feedback-box hidden"></div>
+                </div>
+            `;
+        };
+        
+        // Función para avanzar a la siguiente pregunta
+        window.nextQuestion = () => {
+            currentQuestionIndex++;
+            renderQuiz();
+        };
+
+        // --- GEMINI API INTERACTION ---
+
+        const fetchGeminiResponse = async (questionText, userAnswer, correctConcept) => {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=`;
+            
+            // PROMPT MODIFICADO para respuestas cortas y resumidas 
+            const systemPrompt = `Eres un Tutor Geográfico y Ciudadano Virtual experto. Tu tarea es evaluar la respuesta del usuario a una pregunta de GHC. Usa el 'Concepto Esperado' como base para tu juicio.
+            
+            Instrucciones para la respuesta:
+            1.  Evalúa la respuesta del usuario en detalle, pero mantén la **retroalimentación muy corta, concisa y resumida** (máximo 1-2 frases).
+            2.  Comienza tu respuesta ÚNICAMENTE con una de estas etiquetas al inicio: CORRECTO:, PARCIALMENTE CORRECTO:, o INCORRECTO:.
+            3.  Proporciona la corrección clave o el punto de acierto de forma breve y educativa.
+            4.  Mantén el tono profesional.`; 
+            
+            const userQuery = `Pregunta: ${questionText}
+            Concepto Esperado: ${correctConcept}
+            Respuesta del Usuario: ${userAnswer}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            const maxRetries = 3;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429 && i < maxRetries - 1) {
+                            const delay = Math.pow(2, i) * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            continue; // Retry
+                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Error: No se pudo obtener la respuesta del tutor.";
+                    return text;
+
+                } catch (error) {
+                    console.error("Error en la llamada a la API de Gemini:", error);
+                    return "Error: No se pudo conectar con el Tutor Virtual. Inténtalo de nuevo.";
+                }
+            }
+            return "Error: Máximo de reintentos alcanzado. No se pudo obtener la respuesta.";
+        };
+
+        window.checkAnswer = async (id, concept) => {
+            const answerElement = document.getElementById(`answer-${id}`);
+            const feedbackElement = document.getElementById(`feedback-${id}`);
+            const buttonElement = document.getElementById(`button-${id}`);
+            const userAnswer = answerElement.value.trim();
+            
+            const questionData = shuffledQuestions.find(q => q.id === id);
+            if (!questionData) return;
+            const questionText = document.getElementById(`q-box-${id}`).querySelector('strong').textContent.trim();
+
+
+            if (userAnswer.length < 5) {
+                feedbackElement.className = "feedback-box bg-red-50 text-red-700 border border-red-300";
+                feedbackElement.innerHTML = "❌ ¡Escribe una respuesta más completa para poder evaluarla! (Mínimo 5 palabras)";
+                feedbackElement.classList.remove('hidden');
+                return;
+            }
+
+            // Show loading state
+            feedbackElement.className = "feedback-box bg-slate-100 text-slate-600 border border-slate-300 flex items-center gap-3";
+            feedbackElement.innerHTML = `
+                <div class="loading-ring"></div> 
+                Evaluando tu defensa... esto puede tardar unos segundos.
+            `;
+            feedbackElement.classList.remove('hidden');
+            
+            answerElement.disabled = true;
+            buttonElement.disabled = true;
+
+            // Call the AI Tutor
+            const feedbackText = await fetchGeminiResponse(questionText, userAnswer, concept);
+
+            // Determine class based on AI response tag (checking for plain text tags)
+            let feedbackClass = 'feedback-box bg-purple-100 text-purple-800 border border-purple-300';
+            let icon = '💬';
+            let nextButtonRequired = false;
+
+            if (feedbackText.startsWith('CORRECTO')) {
+                feedbackClass = 'feedback-box bg-green-50 text-green-700 border border-green-300';
+                icon = '✅';
+                nextButtonRequired = true;
+            } else if (feedbackText.startsWith('INCORRECTO')) {
+                feedbackClass = 'feedback-box bg-red-50 text-red-700 border border-red-300';
+                icon = '🛑';
+                nextButtonRequired = true;
+            } else if (feedbackText.startsWith('PARCIALMENTE CORRECTO')) {
+                 feedbackClass = 'feedback-box bg-yellow-50 text-yellow-700 border border-yellow-300';
+                icon = '⚠️';
+                nextButtonRequired = true;
+            }
+
+            // Clean the tag from the final output (removing the plain text tags and the colon now)
+            const cleanedText = feedbackText.replace(/(PARCIALMENTE CORRECTO|CORRECTO|INCORRECTO):/gi, '').trim();
+
+            // Update feedback box
+            feedbackElement.className = feedbackClass;
+            feedbackElement.innerHTML = `<strong class="text-xl">${icon}</strong> ${cleanedText}`;
+            
+            // Handle next button logic
+            if (nextButtonRequired) {
+                buttonElement.innerHTML = currentQuestionIndex < totalQuestions - 1 
+                    ? `Siguiente Pregunta (${currentQuestionIndex + 1}/${totalQuestions})` 
+                    : `Finalizar Interrogatorio`;
+                
+                buttonElement.className = "inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-primary-accent hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-accent transition duration-150 ease-in-out w-full sm:w-auto shadow-md";
+                
+                buttonElement.onclick = window.nextQuestion;
+                buttonElement.disabled = false;
+
+            } else {
+                 // Re-enable for system errors
+                answerElement.disabled = false;
+                buttonElement.disabled = false;
+            }
+        };
+        
+        // Initialize everything on load
+        window.onload = () => {
+            initFirebase();
+            shuffledQuestions = shuffleArray([...questions]);
+            renderQuiz();
+        };
+
+    </script>
 </body>
 </html>
